@@ -1,0 +1,31 @@
+{
+  "name": "@yasp/one-inch-api",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "clean": "rm -rf ./dist && rm -rf node_modules"
+  },
+  "description": "Yasp Finance 1Inch API",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "dependencies": {
+    "@yasp/asset-amount": "workspace:*",
+    "@yasp/evm-lib": "workspace:*",
+    "@yasp/models": "workspace:*",
+    "@yasp/requests": "workspace:*",
+    "eslint-config-custom": "workspace:*",
+    "tsconfig": "workspace:*",
+    "lodash": "4.17.21",
+    "ms": "^2.1.3",
+    "p-queue": "6.6.2",
+    "typescript": "^5.2.2",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/ms": "^0.7.31",
+    "@types/uuid": "^9.0.3"
+  }
+}
