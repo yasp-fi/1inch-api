@@ -1,4 +1,4 @@
-export const INCH_BASE_URL = 'https://api-enterprisetest167.1inch.io';
+export const INCH_BASE_URL = 'https://api.1inch.dev';
 export const INCH_PARTNER_SLUG = `YaspFi`;
 export const INCH_PARTNER_ADDRESS = `0x777BcC85d91EcE0C641a6F03F35a2A98F4049777`;
 export const INCH_PARTNER_FEE_PERCENT = `2`;
