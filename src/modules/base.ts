@@ -1,7 +1,7 @@
-import { Chain, ChainNativeSymbols } from '@yasp/models';
-import { INCH_BASE_URL, InchAPIModules } from '../constants';
-import { inchSupportedChain } from '../utils';
-import PQueue from 'p-queue';
+import { Chain, ChainNativeSymbols } from "@yasp/models";
+import { INCH_BASE_URL, InchAPIModules } from "../constants";
+import { inchSupportedChain } from "../utils";
+import PQueue from "p-queue";
 
 export class BaseAPI {
   constructor(

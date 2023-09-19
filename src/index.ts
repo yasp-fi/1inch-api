@@ -22,7 +22,7 @@ export class OneInchAPI {
   readonly token: InchTokenAPI;
   readonly balance: InchBalanceAPI;
 
-  constructor(apiKey: string, baseUrl = INCH_BASE_URL) {
+  constructor(apiKey: string, baseUrl: string) {
     this.apiKey = apiKey;
     this.baseUrl = baseUrl;
 

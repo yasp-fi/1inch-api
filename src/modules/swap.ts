@@ -5,24 +5,27 @@ import {
   DEXAsset,
   DEXQuote,
   EncodedTransaction,
-} from '@yasp/models';
+} from "@yasp/models";
 import {
   INCH_BASE_URL,
   INCH_PARTNER_ADDRESS,
   INCH_PARTNER_FEE_PERCENT,
   InchAPIModules,
-} from '../constants';
-import { BaseAPI } from './base';
+} from "../constants";
+import { BaseAPI } from "./base";
 import {
   InchQuote,
   InchQuoteRequest,
   InchSwap,
   InchSwapRequest,
-} from '../types';
-import { adaptInchQuoteToDEXQuote, isNativeAssetAddress } from '../utils';
-import { getGasPriceFeeData } from '@yasp/evm-lib';
-import PQueue from 'p-queue';
-import { createSafeWretch } from '@yasp/requests';
+} from "../types";
+import {
+  adaptInchQuoteToDEXQuote,
+  createAPIWretch,
+  isNativeAssetAddress,
+} from "../utils";
+import { getGasPriceFeeData } from "@yasp/evm-lib";
+import PQueue from "p-queue";
 
 export type ForDEXQuoteParams = {
   fromAsset: DEXAsset;
@@ -97,7 +100,10 @@ export class InchSwapAPI extends BaseAPI {
     };
 
     const chainId = Chain.mapNativeSymbolToId(chain);
-    const wretch = createSafeWretch(`${INCH_BASE_URL}/v5.2/${chainId}/quote`);
+    const wretch = createAPIWretch(
+      `${this.baseUrl}/v5.2/${chainId}/quote`,
+      this.apiKey
+    );
     const providerQuote = await wretch
       .query(inchQuoteRequest)
       .get()
@@ -152,7 +158,10 @@ export class InchSwapAPI extends BaseAPI {
     };
 
     const chainId = Chain.mapNativeSymbolToId(chain);
-    const wretch = createSafeWretch(`${INCH_BASE_URL}/v5.2/${chainId}/swap`);
+    const wretch = createAPIWretch(
+      `${this.baseUrl}/v5.2/${chainId}/swap`,
+      this.apiKey
+    );
 
     const resp = await wretch.query(swapTxRequest).get().json<InchSwap>();
     const { tx, toToken, fromToken, toAmount } = resp;
@@ -164,7 +173,7 @@ export class InchSwapAPI extends BaseAPI {
       chain,
       // fee,
       transactionLabel: `Swap via 1Inch`,
-      transactionType: 'SWAP',
+      transactionType: "SWAP",
       payload: tx.data,
       address: {
         fromAddress: userAddress,
