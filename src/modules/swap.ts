@@ -179,16 +179,7 @@ export class InchSwapAPI extends BaseAPI {
         fromAddress: userAddress,
         toAddress: tx.to,
       },
-      metadata: {
-        assetsIn: [
-          {
-            assetAddress: fromToken.address,
-            assetSymbol: fromToken.symbol,
-            amount: (+amount / 10 ** fromToken.decimals).toFixed(6),
-            amountUsd: `0`,
-          },
-        ],
-      },
+      metadata: {}
     };
   }
 }
